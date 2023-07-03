@@ -8,21 +8,20 @@ import { FlightRm } from '../api/models';
   templateUrl: './search-flights.component.html',
   styleUrls: ['./search-flights.component.css']
 })
-export class SearchFlightsComponent {
 
+export class SearchFlightsComponent {
   searchResult: FlightRm[] =[]
 
   constructor(private flightService: FlightService) {
   }
 
-  ngOnInit():void{}
-
-  search(){
-    this.flightService.flightGet({})
-    .subscribe(r=> this.searchResult = r)
+  ngOnInit():void{
   }
 
-
+  search(){
+    this.flightService.searchFlight({})
+    .subscribe(r=> this.searchResult = r)
+  }
 }
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace flights.ReadModels
 {
     public record FlightRm(
-        Guid id,
+        Guid Id,
         string Airline,
         string Price,
         TimePlaceRm Departure,

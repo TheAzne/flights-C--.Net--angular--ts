@@ -5,16 +5,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddSwaggerGen(c=>{
-    c.AddServer(new OpenApiServer{
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddServer(new OpenApiServer
+    {
         Description = "Development Server",
         Url = "Https://localhost:7177"
     });
+
+    //option for swagger
+    c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
+
+
 });
 
 var app = builder.Build();
 
-app.UseCors(builder=> builder.WithOrigins("*"));
+app.UseCors(builder => builder.WithOrigins("*"));
 app.UseSwagger().UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
